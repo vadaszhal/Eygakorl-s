@@ -23,6 +23,10 @@ const generateTable = (data = []) => {
     //oszlop a gomboknak
     const th = document.createElement('th');
     th.appendChild = (th);
+    //oszlop neve
+    const actionTh = document.createElement('th');
+    actionTh.innerText = 'Műveletek';
+    tr.appendChild(actionTh);
 
     const tbody = document.createElement('tbody');//tbody létrehozása
     table.appendChild(tbody);// a táblába
@@ -36,11 +40,11 @@ const generateTable = (data = []) => {
         });
         const td = document.createElement('td');//új cella létrehozása
         tr.appendChild(td);
-//Gombcsoport
+        //Gombcsoport
         const btnGroup = document.createElement('div');//gomboknak div létrehozása
         td.appendChild(btnGroup);// a cellába
         btnGroup.classList.add('btn-group');//gomboknak osztály
-//infogomb
+        //infogomb
         const infoBtn = document.createElement('button');//új gomb létrehozása
         btnGroup.appendChild(infoBtn);//gomb a divbe
         infoBtn.classList.add('btn', 'btn-info');//gomb osztályok
@@ -54,14 +58,14 @@ const generateTable = (data = []) => {
         btnGroup.appendChild(deleteBtn);//gomb a divbe
         deleteBtn.classList.add('btn', 'btn-danger');//gomb osztályok
         deleteBtn.innerText = 'Delete';//gomb szövege
-// törlés gomb eseménykezelője
-deleteBtn.addEventListener('click', async () => {
-    if (confirm('Biztos?')){
-        await remove(row.id);//törlés
-        tr.parentElement.removeChild(tr);//sor törlése
-        alert('A ${row.id} sor törölve.');//alertben kiírja, hogy törölve
-    }
-});
+        // törlés gomb eseménykezelője
+        deleteBtn.addEventListener('click', async () => {
+            if (confirm('Biztos?')) {
+                await remove(row.id);//törlés
+                tr.parentElement.removeChild(tr);//sor törlése
+                alert('A ${row.id} sor törölve.');//alertben kiírja, hogy törölve
+            }
+        });
 
     });
 
